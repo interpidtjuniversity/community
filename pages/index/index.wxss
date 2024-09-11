@@ -1,0 +1,32 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-container{
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 100%; /* 容器高度，根据实际需求设置 */
+}
+.avatar-image{
+  width: 100px; /* 图片宽度自适应 */
+  max-width: 100%; /* 图片不超过容器宽度 */
+  height: 100px; /* 图片高度自适应 */
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+}
+
