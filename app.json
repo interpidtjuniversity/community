@@ -2,8 +2,25 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/community/list"
+    "pages/community/list",
+    "pages/my/my"
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/course.png",
+        "selectedIconPath":"images/course.png",
+        "text":"我的"
+      },
+      {
+        "pagePath": "pages/community/list",
+        "iconPath": "images/course.png",
+        "selectedIconPath":"images/course.png",
+        "text":"课程圈"
+      }
+    ]
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"

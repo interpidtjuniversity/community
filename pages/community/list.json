@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "recycle-view": "miniprogram-recycle-view/miniprogram_dist/recycle-view",
+    "recycle-item": "miniprogram-recycle-view/miniprogram_dist/recycle-item",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell":"weui-miniprogram/cell/cell"
+  }
 }

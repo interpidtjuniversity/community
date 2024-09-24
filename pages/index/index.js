@@ -1,27 +1,28 @@
 import CustomPage from '../base/CustomPage'
-var call = require('../base/API')
+var call = require('../base/API.js')
+var store = require('../store.js')
 
 CustomPage({
     data: {
         canIUseGetUserProfile: true,
         isAgree: false,
         formData: {
-          phoneNumber: "",
-          verifyCode: "",
+          phoneNumber: "18817412292",
+          verifyCode: "679489",
           loginCode: ""
         },
         rules: [{
             name: 'verifyCode',
             rules: {required: true, message: '验证码必填'},
         }],
-        hasUserInfo: true,      // 初始化为 false
+        hasUserInfo: false,      // 初始化为 false
         userInfo:{
           avatarUrl:null,
           nickName:null
         }
     },
     onShow() {
-
+      store.clearToken();
     },
     tapProfileButtom(e) {
       wx.getUserProfile({
@@ -46,6 +47,16 @@ CustomPage({
           })
         },
       })
+
+    },
+
+    getVerifyCode(e) {
+      call.APIGetVerifyCode(
+      {"phoneNumber" : this.data.formData.phoneNumber},
+      (res) => {
+        console.log(res);
+      }
+      )
     },
 
     formInputChange(e) {
@@ -70,12 +81,36 @@ CustomPage({
 
                 }
             } else {
-              console.log(this.data.formData);
-              call.APILoginByPhoneNumber(this.data.formData, 
-                (data) => {
-                  console.log("从服务器接收到数据:" + data);
-                }
-              )
+              wx.switchTab({
+                url: '/pages/my/my',
+              })
+
+              // call.APILoginByPhoneNumber(this.data.formData, 
+              //   (data) => {
+              //     if (null !== data["token"]){
+              //       store.setToken(data["token"]);
+              //       // switchTab
+              //       console.log("跳转!")
+              //       wx.switchTab({
+              //         url: '/pages/my/my',
+              //       })
+              //     } else {
+              //       // 登陆接口没有返回token, 登陆失败
+              //       // wx.login, 刷新 js_code(loginCode)
+              //       wx.login({
+              //         success: (res) => {
+              //           this.setData({
+              //             formData:{
+              //               loginCode: res.code
+              //             }
+              //           })
+              //         },
+              //       })
+              //     }
+              //   }
+              // )
+
+
             }
         })
     }

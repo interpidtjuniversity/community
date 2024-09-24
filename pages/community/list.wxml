@@ -1,2 +1,54 @@
 <!--pages/community/list.wxml-->
 <text>pages/community/list.wxml</text>
+
+<view class="page" data-weui-theme="{{theme}}">
+  <scroll-view type="list" scroll-y class="page-scroll-view page-height">
+
+  <view class="header">
+    <text class="title">课程圈</text>
+  </view>
+
+  <block wx:for="{{courses}}" wx:key="index">
+    <view class="post-card">
+      <view class="user-info">
+        <!-- 头像部分 -->
+        <view class="avatar-column">
+          <image class="avatar" src="{{item.avatar}}" />
+        </view>
+
+        <!-- 昵称、内容、图片等内容部分 -->
+        <view class="content-column">
+          <text class="nickname">{{item.nickname}}</text>
+            <block wx:for="{{item.content}}" wx:key="indexContent">
+              <text class="content">{{item}}</text>
+            </block>
+
+          <!-- 图片展示区域 -->
+          <view class="media-grid">
+            <block wx:for="{{item.images}}" wx:key="indexImage">
+              <image class="media-image" src="{{item}}" mode="aspectFill" />
+            </block>
+          </view>
+          <!-- 发布地点和时间 -->
+          <view class="media-info">
+              <text class="location">{{item.location}}</text>
+              <text class="time">{{item.time}}</text>
+          </view>
+          <!-- 评论和点赞区域 -->
+          <view class="actions">
+            <text class="like-btn">📆{{item.like.count}}</text>
+            <text class="comment-btn">💬 {{item.comment.count}}</text>
+          </view>
+
+          <view class="comment-section">
+            <view class="comment" wx:for="{{item.comment.comments}}" wx:key="indexComment">
+            <text class="comment-user">{{item.user}}</text>:
+            <text class="comment-content">{{item.content}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  </scroll-view>
+</view>

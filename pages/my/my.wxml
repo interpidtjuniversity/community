@@ -1,0 +1,141 @@
+<!--pages/my/my.wxml-->
+<text>pages/my/my.wxml</text>
+
+<view class="page" data-weui-theme="{{light}}">
+    <scroll-view type="list" scroll-y class="page-scroll-view page-height">
+    <view class="container">
+
+      <view class="toolbar">
+        <!-- 工具列表 -->
+        <block wx:for="{{tools}}" wx:key="index">
+          <view class="toolbar-item" bindtap="openBindPopup" data-name="{{item.name}}">
+            <image src="{{item.icon}}" class="toolbar-icon"></image>
+            <text class="toolbar-text">{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+      <!-- 工具1 弹窗 -->
+      <view wx:if="{{bindPopup}}" class="popup">
+        <view class="popup-content">
+          <mp-form-page title="学生绑定" subtitle="修改次数超过两次需要管理员审核">
+                <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+                <mp-cells>
+                  <mp-cell>
+                    <label class="avatar-container">
+                      <image class="avatar-image" src="../../images/wechat_avatar.PNG"></image>
+                    </label>
+                  </mp-cell>
+                </mp-cells>
+                <mp-cells>
+                        <label>
+                            <mp-cell prop="studentName" title="学生名称" ext-class=" weui-cell_vcode">
+                                <input bindinput="formInputChange" data-field="studentName" class="weui-input" placeholder="请输入学生名称"/>
+                            </mp-cell>
+                        </label>
+                        <mp-cell prop="studentIDCard" title="生份证号" ext-class=" weui-cell_vcode">
+                            <input bindinput="formInputChange" data-field="studentIDCard" class="weui-input" placeholder="请输入身份证号"/>
+                        </mp-cell>
+                        <mp-cell prop="studentPhase" title="社团种类" ext-class=" weui-cell_vcode">
+                          <view class="weui-input">
+                            <picker bindchange="phasePickerChange" value="{{phaseIndex}}" range="{{typeArray}}">
+                              <view class="phase-grade-picker" wx:if="{{!isPhase}}">
+                                请选择社团种类
+                              </view>
+                              <view class="phase-grade-picker" wx:else>
+                                {{formData.studentPhase}}
+                              </view>
+                            </picker>
+                          </view>
+                        </mp-cell>
+                        <mp-cell prop="studentGrade" title="学生年级" ext-class="weui-cell_vcode">
+                          <view class="weui-input">
+                            <picker bindchange="gradePickerChange" value="{{gradeIndex}}" range="{{gradeArray}}">
+                              <view class="phase-grade-picker" wx:if="{{!isGrade}}">
+                                请选择学生年级
+                              </view>
+                              <view class="phase-grade-picker" wx:else>
+                                {{formData.studentGrade}}
+                              </view>
+                            </picker>
+                          </view>
+                        </mp-cell>
+                          
+                    </mp-cells> 
+                </mp-form>
+
+                <view slot="button">
+                    <button class="weui-btn" type="primary" bindtap="closeBindPopup">确定</button>
+                </view>
+          </mp-form-page>
+        </view>
+      </view>
+
+      <!-- 模块1: 待抢课 -->
+      <view class="section">
+        <view class="section-header">
+          <text>预约成功-待抢课 (1)</text>
+        </view>
+        <scroll-view class="scroll-content" scroll-y="true">
+          <view class="card pending-card">
+            <view class="card-header">
+              <text class="course-name">高等数学</text>
+              <text class="teacher-name">李老师</text>
+            </view>
+            <view class="card-details">
+              <text class="course-details">教学楼 101 ｜ 张三 ｜ 123456789012345678</text>
+              <button class="grab-button">抢课</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 模块2: 待上课 -->
+      <view class="section">
+        <view class="section-header">
+          <text>抢课成功-待上课 (2)</text>
+        </view>
+        <scroll-view class="scroll-content" scroll-y="true">
+          <view class="card upcoming-card">
+            <view class="card-header">
+              <text class="course-name">物理实验</text>
+              <text class="teacher-name">王老师</text>
+            </view>
+            <view class="card-details">
+              <text class="course-details">实验楼 202 ｜ 李四 ｜ 987654321098765432</text>
+              <button class="grab-button">抢课</button>
+            </view>
+          </view>
+          <view class="card upcoming-card">
+            <view class="card-header">
+              <text class="course-name">化学实验</text>
+              <text class="teacher-name">陈老师</text>
+            </view>
+            <view class="card-details">
+              <text class="course-details">化学楼 303 ｜ 王五 ｜ 135792468013579246</text>
+              <button class="grab-button">抢课</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 模块3: 已结束 -->
+      <view class="section">
+        <view class="section-header">
+          <text>已结束 (3)</text>
+        </view>
+        <scroll-view class="scroll-content" scroll-y="true">
+          <view class="card ended-card">
+            <view class="card-header">
+              <text class="course-name">软件工程</text>
+              <text class="teacher-name">赵老师</text>
+            </view>
+            <view class="card-details">
+              <text class="course-details">教学楼 305 ｜ 赵六 ｜ 246813579024681357</text>
+              <button class="grab-button">抢课</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    </scroll-view>
+</view>

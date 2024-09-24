@@ -1,1 +1,207 @@
 /* pages/community/list.wxss */
+
+/*Header组件*/
+.header {
+  height: 48px;
+  background: linear-gradient(90deg, #ffffff, #f8f8f8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.back-button {
+  font-size: 16px;
+  color: #333;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+/*动态卡片组件*/
+.post-card {
+  padding: 15px;
+  background-color: #f8f9fa; /* 柔和的背景色 */
+  border-radius: 10px; /* 卡片圆角 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 柔和的阴影 */
+  margin-bottom: 12px;
+  border: 1px solid #e5e5e5; /* 添加边框让卡片更有层次感 */
+}
+
+.user-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+/* 头像单独一列 */
+.avatar-column {
+  width: 44px;
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #dcdcdc; /* 给头像添加浅色边框 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 头像轻微阴影 */
+}
+
+.content-column {
+  flex-grow: 1; /* 占据剩余的空间 */
+}
+
+.nickname {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  border-radius: 5px; /* 文案区域轻微圆角 */
+}
+
+
+/* 默认情况下每行展示三张图片 */
+.media-image {
+  width: 32%;
+  height: 100px;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.media-image:hover {
+  transform: scale(1.05); /* 悬停放大 */
+}
+
+.media-image:nth-child(3n) {
+  margin-right: 0; /* 每行最后一个图片不加右边距 */
+}
+
+/* 单张图片 */
+.media-grid.image-count-1 .media-image {
+  width: 100%;
+}
+
+/* 两张图片 */
+.media-grid.image-count-2 .media-image {
+  width: 48%; /* 两张图片每张占50% */
+}
+
+/* 四张图片：两行每行两张 */
+.media-grid.image-count-4 .media-image {
+  display: grid;
+  grid-template-columns: repeat(2, 48%); /* 两列，每列占48% */
+  grid-gap: 2%; /* 列间距 */
+}
+
+/* 五张图片：第一行三张，第二行两张 */
+.media-grid.image-count-5 .media-image {
+  width: 32%; /* 前三张图片宽度 */
+}
+
+.media-grid.image-count-5 .media-image:nth-child(4), 
+.media-grid.image-count-5 .media-image:nth-child(5) {
+  width: 48%; /* 最后一行两张图片宽度 */
+}
+
+/* 六张图片：两行，每行三张 */
+.media-grid.image-count-6 .media-image,
+.media-grid.image-count-3 .media-image,
+.media-grid.image-count-9 .media-image {
+  width: 32%;
+}
+
+.media-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  bottom: -20px;
+  left: 0;
+  color:#999;
+}
+
+.location {
+  font-size: 12px;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.like-btn, .comment-btn {
+  font-size: 14px;
+  color: #666;
+  padding: 5px 10px;
+  background-color: #f0f0f0; /* 按钮轻微背景色 */
+  border-radius: 5px;
+  margin-right: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 按钮阴影 */
+  transition: background-color 0.3s ease; /* 添加悬停效果 */
+}
+.like-btn:hover, .comment-btn:hover {
+  background-color: #e0e0e0; /* 悬停时背景变化 */
+}
+
+
+/*评论区域组件*/
+.comment-section {
+  margin-top: 5px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.comment {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.comment-user {
+  font-weight: 600; /* 用户名加粗以突出 */
+  color: #576b95; /* 使用微信常用的蓝灰色 */
+}
+
+.comment-content {
+  font-size: 14px;
+  color: #666; /* 与用户名区分开，采用淡灰色 */
+  line-height: 1.4; /* 适度的行间距，确保评论内容不显得过于紧凑 */
+}
+
+/*加载更多按钮*/
+.load-more {
+  text-align: center;
+  padding: 12px 0;
+  color: #999;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+

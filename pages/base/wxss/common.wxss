@@ -1,0 +1,9 @@
+@import './app.wxss';
+@import './patch.wxss';
+@import './skyline-patch.wxss';
+
+@media (prefers-color-scheme: dark) {
+    page {
+        background-color: #1f1f1f;
+    }
+}
